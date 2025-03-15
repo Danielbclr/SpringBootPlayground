@@ -2,26 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spring Boot Bean Demo</title>
-    <script>
-        function fetchBean(beanType) {
-            fetch(`http://localhost:8080/api/scope/${beanType}`)
-                .then(response => response.text())
-                .then(data => document.getElementById("output").innerText = data)
-                .catch(error => console.error("Error:", error));
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bean Scope API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
         }
-    </script>
+        button {
+            padding: 15px 20px;
+            font-size: 18px;
+            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+            display: block;
+        }
+        #response {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<h1>Spring Boot Bean Scope Demo</h1>
-<button onclick="fetchBean('singleton')">Singleton Bean</button>
-<button onclick="fetchBean('prototype')">Prototype Bean</button>
-<button onclick="fetchBean('request')">Request Bean</button>
-<button onclick="fetchBean('session')">Session Bean</button>
-<button onclick="fetchBean('application')">Application Bean</button>
 
-<h2>Response:</h2>
-<p id="output">Click a button to fetch data.</p>
+<h2>Bean Scope API</h2>
+
+<button onclick="callApi('/api/scope/singleton')">Singleton Bean</button>
+<button onclick="callApi('/api/scope/prototype')">Prototype Bean</button>
+<button onclick="callApi('/api/scope/request')">Request Bean</button>
+<button onclick="callApi('/api/scope/session')">Session Bean</button>
+<button onclick="callApi('/api/scope/application')">Application Bean</button>
+
+<p id="response">Response will appear here...</p>
+
+<script>
+    function callApi(endpoint) {
+        fetch(endpoint)
+            .then(response => response.text())
+            .then(data => document.getElementById("response").innerText = data)
+            .catch(error => console.error("Error:", error));
+    }
+</script>
+
 </body>
 </html>

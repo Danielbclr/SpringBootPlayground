@@ -4,6 +4,7 @@ import com.example.demo.beans.beans.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 
 import javax.inject.Provider;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/scope")
 public class BeanController {
